@@ -79,7 +79,7 @@ export default function VlrtRandomMap() {
   };
 
   const closeModal = (e) => {
-    // 클릭된 요소가 모달 외부인지 확인
+    // 모달 외부
     if (e.target.id === "modal-background") {
       setSelectedMap(null);
     }
@@ -92,28 +92,28 @@ export default function VlrtRandomMap() {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <h1 className="mb-8 mt-[5rem] text-center text-[4rem] font-bold">
+      <h1 className="mb-8 mt-[5rem] text-center text-[3rem] font-bold">
         Random Map Selector
       </h1>
       <div className="flex items-center justify-center">
-        <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="flex w-[56rem] flex-wrap justify-center gap-4">
           {maps.map((map) => (
             <div
               key={map.name}
-              className="relative cursor-pointer overflow-hidden rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+              className="relative overflow-hidden transition-transform duration-300 rounded-md shadow-md cursor-pointer hover:scale-105"
               onClick={() => toggleMap(map.name)}
             >
               <img
                 src={map.src}
                 alt={map.name}
-                className={`h-32 w-48 object-cover transition duration-300 ${
+                className={`h-[8rem] w-[12rem] object-cover transition duration-300 ${
                   excludedMaps.includes(map.name) ? "grayscale" : "grayscale-0"
                 }`}
               />
               <div
-                className={`absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-2 text-center text-[2rem] font-semibold ${
+                className={`absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-2 text-center text-[2rem] font-semibold ${
                   excludedMaps.includes(map.name)
-                    ? "text-gray-400"
+                    ? "text-zinc-300"
                     : "text-white"
                 }`}
               >
@@ -125,16 +125,16 @@ export default function VlrtRandomMap() {
       </div>
       <button
         onClick={getRandomMap}
-        className="flex h-[3.5rem] w-[8rem] items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-center text-[40px] text-white shadow-md hover:from-purple-700 hover:to-indigo-700 focus:outline-none"
+        className="mt-[3rem] flex h-[3.5rem] items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 px-[1rem] text-center text-[2rem] text-white shadow-md hover:from-purple-700 hover:to-indigo-700 focus:outline-none"
       >
-        Go!
+        Generate Random Map
       </button>
 
       {selectedMap && (
         <div
           id="modal-background"
-          className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-70"
-          onClick={closeModal} // 배경 클릭
+          className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-70"
+          onClick={closeModal}
         >
           <div
             className="flex flex-col items-center justify-center"
