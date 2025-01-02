@@ -7,25 +7,31 @@ export default function Footer() {
 
   return (
     <div className="do-hyeon-regular fixed bottom-0 left-0 z-[50] h-[5.5rem] w-full px-[0.6rem] text-[#515255]">
-      <section className="w-100 bg-transparent pt-[0.4rem]">
+      <section className="bg-transparent w-100">
         <div className="flex justify-between bg-transparent pb-[0.2rem] pr-[0.8rem]">
-          <div className="text-[1.2rem] text-white/80">Game Balancer</div>
+          <div className="pt-7 text-[1.2rem] text-white/80">Game Balancer</div>
         </div>
         <section className="text-[0.9rem]">
           <div className="flex w-[100%] justify-between">
-            <nav className="flex footer__nav flex-nowrap">
-              <ul className="flex flex-col gap-0 p-0 m-0 list-none flex-nowrap">
+            <nav className="flex flex-nowrap">
+              <ul className="m-0 flex list-none flex-nowrap gap-0 space-x-[1.5rem] p-0">
                 <li
-                  className="cursor-pointer text-white/80"
+                  className="cursor-pointer text-white/80 hover:text-gray-400"
                   onClick={() => navigate("/LeagueOfLegends")}
                 >
-                  League of Legends 〉
+                  League of Legends
                 </li>
                 <li
-                  className="mb-[1rem] cursor-pointer text-white/80"
+                  className="cursor-pointer text-white/80 hover:text-gray-400"
                   onClick={() => navigate("/Valorant")}
                 >
-                  Valorant 〉
+                  Valorant
+                </li>
+                <li
+                  className="mb-[1rem] cursor-pointer text-white/80 hover:text-gray-400"
+                  onClick={() => navigate("/maps")}
+                >
+                  Random Map
                 </li>
               </ul>
             </nav>
