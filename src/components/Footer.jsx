@@ -1,5 +1,6 @@
 import { FaGithub, FaPhoneAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+
 export default function Footer() {
   const navigate = useNavigate();
 
@@ -11,8 +12,8 @@ export default function Footer() {
         </div>
         <section className="text-[0.9rem]">
           <div className="flex w-[100%] justify-between">
-            <nav className="footer__nav flex flex-nowrap">
-              <ul className="m-0 flex list-none flex-col flex-nowrap gap-0 p-0">
+            <nav className="flex footer__nav flex-nowrap">
+              <ul className="flex flex-col gap-0 p-0 m-0 list-none flex-nowrap">
                 <li
                   className="cursor-pointer text-white/80"
                   onClick={() => navigate("/LeagueOfLegends")}
@@ -34,12 +35,18 @@ export default function Footer() {
                   &nbsp;Contact: scy0723123@gmail.com &nbsp;
                 </span>
               </div>
-              <div className="mt-1 flex items-center text-white/80">
-                <FaGithub />
-                <span className="ml-2 cursor-pointer text-white/80 hover:text-indigo-500">
-                  cxaosdev
-                </span>
-              </div>
+              <a
+                href="https://github.com/cxaosdev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="flex items-center mt-1 text-white/80">
+                  <FaGithub className="" />
+                  <span className="ml-2 cursor-pointer text-white/80 hover:text-amber-600">
+                    cxaosdev
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
         </section>
