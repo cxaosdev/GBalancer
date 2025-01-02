@@ -45,7 +45,7 @@ function Header({ selectedGame, setSelectedGame, isKorean, toggleLanguage }) {
           className="ml-[1rem] flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-[0.5rem] bg-transparent"
           onClick={toggleSidebar}
         >
-          <span className="-translate-y-[.2rem] text-[3rem] font-thin">☰</span>
+          <span className="text-[2.5rem] font-thin">☰</span>
         </button>
         <div
           onClick={() => navigate("/")}
