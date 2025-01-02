@@ -109,14 +109,14 @@ export default function VlrtRandomMap() {
                 className={`h-[8rem] w-[12rem] object-cover transition duration-300 ${
                   excludedMaps.includes(map.name)
                     ? "brightness-75 grayscale"
-                    : "saturate-125 brightness-110"
+                    : "brightness-110 saturate-150"
                 }`}
               />
               <div
-                className={`absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent p-2 text-center text-[2rem] font-semibold ${
+                className={`absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent p-2 text-center text-[2.2rem] font-semibold ${
                   excludedMaps.includes(map.name)
-                    ? "text-zinc-300"
-                    : "text-white"
+                    ? "text-zinc-300/80"
+                    : "text-white/80"
                 }`}
               >
                 {map.name}
