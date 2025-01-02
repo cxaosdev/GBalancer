@@ -64,7 +64,7 @@ export default function App() {
   }
 
   return (
-    <div className="root-wrap flex h-screen flex-col overflow-hidden">
+    <div className="flex flex-col h-screen overflow-hidden root-wrap">
       <BrowserRouter>
         <Header
           selectedGame={selectedGame}
@@ -72,7 +72,7 @@ export default function App() {
           isKorean={isKorean}
           toggleLanguage={toggleLanguage}
         />
-        <div className="flex flex-1 flex-col overflow-auto">
+        <div className="flex flex-col flex-1 overflow-auto">
           <Routes>
             <Route
               path="/"

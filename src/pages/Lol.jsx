@@ -1,17 +1,7 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useMemo,
-} from "react";
+import PlayerLol from "components/PlayerLol.jsx";
+import ResultModalLol from "components/ResultModalLol.jsx";
 import Spinner from "components/Spinner.jsx";
 import WarningModal from "../components/WarningModal.jsx";
-import PlayerLol from "components/PlayerLol.jsx";
-import { tierToPoints_lol } from "../util/tierPoints.js";
-import { generateLolTeams } from "../util/teamGenerator.js";
-import ResultModalLol from "components/ResultModalLol.jsx";
-
 import l1 from "../assets/league of legends/lol_background.webp";
 import l2 from "../assets/league of legends/c-o-project-hunters-login.webp";
 import l3 from "../assets/league of legends/c-o-videostill-getjinxed-10.webp";
@@ -20,6 +10,16 @@ import l5 from "../assets/league of legends/c-o-war-2020-01.webp";
 import l6 from "../assets/league of legends/lol_T12023.webp";
 import l7 from "../assets/league of legends/c-o-war-2020-02.webp";
 import l8 from "../assets/league of legends/war-2020-04.webp";
+import { generateLolTeams } from "../util/teamGenerator.js";
+import { tierToPoints_lol } from "../util/tierPoints.js";
+
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 
 const players = Array.from({ length: 10 }, (_, index) => `Player ${index + 1}`);
 
@@ -182,7 +182,7 @@ export default function Lol() {
 
   return (
     <div
-      className="mscrollbar-custo page-container lol__container relative flex flex-col items-center overflow-y-auto pt-[9vh]"
+      className="scrollbar-custom page-container lol__container relative flex flex-col items-center overflow-y-auto pt-[9vh]"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
