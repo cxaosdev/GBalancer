@@ -33,6 +33,12 @@ export default function Footer() {
                 >
                   Random Map
                 </li>
+                <li
+                  className="mb-[1rem] cursor-pointer text-white/80 hover:text-gray-400"
+                  onClick={() => navigate("/agents")}
+                >
+                  Random Agent
+                </li>
               </ul>
             </nav>
             <div className="fixed bottom-0 right-[1rem] flex items-end text-[1rem]">
