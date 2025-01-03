@@ -2,6 +2,7 @@ import Footer from "components/Footer";
 import React from "react";
 import logo from "../components/logo2.jpg";
 import { FaGithub, FaPhoneAlt } from "react-icons/fa";
+import { VscFeedback } from "react-icons/vsc";
 
 const UnsupportedPage = () => {
   return (
@@ -13,15 +14,23 @@ const UnsupportedPage = () => {
         </h1>
         <div className="fixed bottom-1 flex items-center text-[1rem]">
           <div className="flex items-center text-white/80">
-            <FaPhoneAlt />
+            <VscFeedback />
             <span className="text-white/80">
-              &nbsp;Contact: scy0723123@gmail.com &nbsp;
+              &nbsp;scy0723123@gmail.com &nbsp;
             </span>
           </div>
-          <div className="flex items-center text-white/80">
-            <FaGithub />
-            <span className="ml-2 cursor-pointer text-white/80">cxaosdev</span>
-          </div>
+          <a
+            href="https://github.com/cxaosdev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="flex items-center text-white/80">
+              <FaGithub />
+              <span className="ml-2 cursor-pointer text-white/80">
+                cxaosdev
+              </span>
+            </div>
+          </a>
         </div>
       </div>
     </>
