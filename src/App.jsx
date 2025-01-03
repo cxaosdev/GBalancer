@@ -10,6 +10,7 @@ import Valorant2 from "./assets/valorant/Valorant2.webp";
 import ValorantTeaser from "./assets/valorant/Valorant_EP-8-Teaser_The-arrival.webp";
 import Vlrt from "./pages/Vlrt";
 import VlrtBackground from "./assets/valorant/vlrt_background.webp";
+import VlrtRandomAgent from "./pages/VlrtRandomAgent";
 import VlrtRandomMap from "./pages/VlrtRandomMap";
 import l1 from "./assets/league of legends/lol_background.webp";
 import l2 from "./assets/league of legends/c-o-project-hunters-login.webp";
@@ -87,6 +88,7 @@ export default function App() {
             <Route path="/leagueOfLegends" element={<Lol />} />
             <Route path="/valorant" element={<Vlrt />} />
             <Route path="/maps" element={<VlrtRandomMap />} />
+            <Route path="/agents" element={<VlrtRandomAgent />} />
           </Routes>
         </div>
         <Footer />
