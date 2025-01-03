@@ -15,8 +15,8 @@ const UnsupportedPage = () => {
         <div className="fixed bottom-1 flex items-center text-[1rem]">
           <div className="flex items-center text-white/80">
             <VscFeedback />
-            <span className="text-white/80">
-              &nbsp;scy0723123@gmail.com &nbsp;
+            <span className="ml-1 text-white/80">
+              scy0723123@gmail.com &nbsp;
             </span>
           </div>
           <a
@@ -26,7 +26,7 @@ const UnsupportedPage = () => {
           >
             <div className="flex items-center text-white/80">
               <FaGithub />
-              <span className="ml-2 cursor-pointer text-white/80">
+              <span className="ml-1 cursor-pointer text-white/80">
                 cxaosdev
               </span>
             </div>
