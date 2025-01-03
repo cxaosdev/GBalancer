@@ -142,19 +142,20 @@ export default function VlrtRandomAgent() {
             className="relative flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div
-              className="absolute top-0 left-0 w-full h-full"
+            <img
+              src={selectedAgent.background}
+              alt="Background"
+              className="absolute left-0 top-0 h-[50%] w-[90%] rounded-lg object-cover opacity-50 shadow-lg"
               style={{
-                backgroundImage: `url(${selectedAgent.background})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                opacity: 0.7,
+                transform: "translate(-50%, -30%)",
+                top: "25%",
+                left: "50%",
               }}
             />
             <img
               src={selectedAgent.fullPortrait}
               alt={selectedAgent.displayName}
-              className="z-10 w-[60vw] max-w-2xl rounded-lg shadow-2xl"
+              className="z-10 w-[40vw] max-w-xl rounded-lg shadow-2xl"
             />
             <h2
               className="z-10 text-[4rem] font-extrabold"
