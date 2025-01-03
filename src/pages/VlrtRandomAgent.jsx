@@ -139,15 +139,31 @@ export default function VlrtRandomAgent() {
           onClick={closeModal}
         >
           <div
-            className="flex flex-col items-center justify-center"
+            className="relative flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
+            <div
+              className="absolute top-0 left-0 w-full h-full"
+              style={{
+                backgroundImage: `url(${selectedAgent.background})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: 0.7,
+              }}
+            />
             <img
               src={selectedAgent.fullPortrait}
               alt={selectedAgent.displayName}
-              className="w-[60vw] max-w-2xl rounded-lg shadow-2xl"
+              className="z-10 w-[60vw] max-w-2xl rounded-lg shadow-2xl"
             />
-            <h2 className="mb-4 mt-4 text-[4rem] font-bold text-white">
+            <h2
+              className="z-10 text-[4rem] font-extrabold"
+              style={{
+                background: `linear-gradient(to bottom right, #${selectedAgent.backgroundGradientColors[0]}, #${selectedAgent.backgroundGradientColors[1]}, #${selectedAgent.backgroundGradientColors[2]}, #${selectedAgent.backgroundGradientColors[3]})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
               {selectedAgent.displayName}
             </h2>
           </div>
