@@ -44,7 +44,7 @@ export default function VlrtRandomAgent() {
 
   const getRandomAgent = () => {
     const availableAgents = characters.filter(
-      (map) => !excludedAgents.includes(map.name),
+      (character) => !excludedAgents.includes(character.displayName),
     );
     if (availableAgents.length === 0) {
       alert("선택 가능한 요원이 없습니다.");
