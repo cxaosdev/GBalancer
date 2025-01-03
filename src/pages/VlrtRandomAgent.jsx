@@ -92,11 +92,11 @@ export default function VlrtRandomAgent() {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <h1 className="mb-8 mt-[5rem] text-center text-[3rem] font-bold">
+      <h1 className="mb-[4vh] mt-[4vh] text-center text-[3.5rem] font-bold">
         Random Agent Selector
       </h1>
       <div className="flex items-center justify-center">
-        <div className="flex w-[80rem] flex-wrap justify-center gap-4">
+        <div className="flex w-[76rem] flex-wrap justify-center gap-4">
           {characters.map((character) => (
             <div
               key={character.id}
@@ -106,17 +106,17 @@ export default function VlrtRandomAgent() {
               <img
                 src={character.killfeedPortrait}
                 alt={character.displayName}
-                className={`h-[6rem] w-[10rem] object-cover transition duration-300 ${
+                className={`h-[5.5rem] w-[12rem] object-cover transition duration-300 ${
                   excludedAgents.includes(character.displayName)
                     ? "brightness-75 grayscale"
                     : "brightness-110 saturate-150"
                 }`}
               />
               <div
-                className={`absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent p-2 text-center text-[1.8rem] font-semibold ${
+                className={`absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent text-center text-[1.8rem] font-semibold ${
                   excludedAgents.includes(character.displayName)
-                    ? "text-zinc-300/80"
-                    : "text-white/90"
+                    ? "text-zinc-300/"
+                    : "text-white"
                 }`}
               >
                 {character.displayName}
@@ -127,7 +127,7 @@ export default function VlrtRandomAgent() {
       </div>
       <button
         onClick={getRandomAgent}
-        className="mt-[3rem] flex h-[3.5rem] items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 px-[1rem] text-center text-[2rem] text-white shadow-md hover:from-purple-700 hover:to-indigo-700 focus:outline-none"
+        className="sparkle mt-[3.5rem] flex items-center justify-center rounded-md bg-gradient-to-r from-rose-800 to-amber-700 px-4 py-2 text-[30px] text-white shadow-rose-900/50 hover:from-rose-700 hover:to-amber-600 hover:shadow-rose-900/70 focus:ring-2 active:from-rose-900 active:to-amber-800 active:outline-none active:ring-rose-700 active:ring-offset-2"
       >
         Generate Random Agent
       </button>
