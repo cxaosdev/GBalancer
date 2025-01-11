@@ -96,17 +96,17 @@ export default function VlrtRandomAgent() {
         Random Agent Selector
       </h1>
       <div className="flex items-center justify-center">
-        <div className="flex w-[76rem] flex-wrap justify-center gap-4">
+        <div className="flex w-[90rem] flex-wrap justify-center gap-4">
           {characters.map((character) => (
             <div
               key={character.id}
-              className="relative overflow-hidden transition-transform duration-300 rounded-md shadow-md cursor-pointer hover:scale-105"
+              className="relative cursor-pointer overflow-hidden rounded-md shadow-md transition-transform duration-300 hover:scale-105"
               onClick={() => toggleAgent(character.displayName)}
             >
               <img
                 src={character.killfeedPortrait}
                 alt={character.displayName}
-                className={`h-[5.5rem] w-[12rem] object-cover transition duration-300 ${
+                className={`h-[5rem] w-[11rem] object-cover transition duration-300 ${
                   excludedAgents.includes(character.displayName)
                     ? "brightness-75 grayscale"
                     : "brightness-110 saturate-150"
@@ -135,7 +135,7 @@ export default function VlrtRandomAgent() {
       {selectedAgent && (
         <div
           id="modal-background"
-          className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-70"
+          className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-70"
           onClick={closeModal}
         >
           <div
