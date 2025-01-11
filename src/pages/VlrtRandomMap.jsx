@@ -92,15 +92,18 @@ export default function VlrtRandomMap() {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <h1 className="mb-[5vh] mt-[4vh] text-center text-[3.5rem] font-bold">
+      <h1 className="mt-[4vh] text-center text-[3.5rem] font-bold">
         Random Map Selector
+      </h1>
+      <h1 className="mb-[4vh] text-center text-[2rem] font-bold">
+        Click on maps to ban!
       </h1>
       <div className="flex items-center justify-center">
         <div className="flex w-[56rem] flex-wrap justify-center gap-4">
           {maps.map((map) => (
             <div
               key={map.name}
-              className="relative overflow-hidden transition-transform duration-300 rounded-md shadow-md cursor-pointer hover:scale-105"
+              className="relative cursor-pointer overflow-hidden rounded-md shadow-md transition-transform duration-300 hover:scale-105"
               onClick={() => toggleMap(map.name)}
             >
               <img
@@ -135,7 +138,7 @@ export default function VlrtRandomMap() {
       {selectedMap && (
         <div
           id="modal-background"
-          className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-70"
+          className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-70"
           onClick={closeModal}
         >
           <div

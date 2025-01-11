@@ -92,8 +92,11 @@ export default function VlrtRandomAgent() {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <h1 className="mb-[4vh] mt-[4vh] text-center text-[3.5rem] font-bold">
+      <h1 className="mt-[4vh] text-center text-[3.5rem] font-bold">
         Random Agent Selector
+      </h1>
+      <h1 className="mb-[4vh] text-center text-[2rem] font-bold">
+        Click on agents to ban!
       </h1>
       <div className="flex items-center justify-center">
         <div className="flex w-[90rem] flex-wrap justify-center gap-4">
