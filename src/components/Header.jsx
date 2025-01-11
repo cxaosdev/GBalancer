@@ -2,6 +2,7 @@ import Sidebar from "./Sidebar";
 import logo from "../components/logo2.jpg";
 import { useState } from "react";
 import { MdLanguage } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 
 function Header({ selectedGame, setSelectedGame, isKorean, toggleLanguage }) {
@@ -43,7 +44,9 @@ function Header({ selectedGame, setSelectedGame, isKorean, toggleLanguage }) {
           className="ml-[1rem] flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-[0.5rem] bg-transparent"
           onClick={toggleSidebar}
         >
-          <span className="text-[2.1rem] font-thin">☰</span>
+          <span className="text-[1.8rem] font-thin">
+            <RxHamburgerMenu />
+          </span>
         </button>
         <div
           onClick={() => navigate("/")}
