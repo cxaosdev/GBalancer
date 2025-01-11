@@ -43,11 +43,11 @@ function Header({ selectedGame, setSelectedGame, isKorean, toggleLanguage }) {
           className="ml-[1rem] flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-[0.5rem] bg-transparent"
           onClick={toggleSidebar}
         >
-          <span className="text-[2.3rem] font-thin">☰</span>
+          <span className="text-[2.1rem] font-thin">☰</span>
         </button>
         <div
           onClick={() => navigate("/")}
-          className="flex items-center justify-center cursor-pointer header__title"
+          className="header__title flex cursor-pointer items-center justify-center"
         >
           <img className="ml-[1rem] w-[1.7rem]" src={logo} alt="Logo" />
           <span className="ml-[.7rem] mt-[0.2rem] hidden text-[2.3rem] leading-none xs:inline">
@@ -66,7 +66,7 @@ function Header({ selectedGame, setSelectedGame, isKorean, toggleLanguage }) {
         selectLanguage={selectLanguage}
       />
 
-      <div className="items-center hidden md:flex">
+      <div className="hidden items-center md:flex">
         <div className="mr-[1rem] flex items-center space-x-1 text-[2vh]">
           <MdLanguage size={20} />
           <div className="flex">
