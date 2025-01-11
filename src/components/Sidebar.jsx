@@ -1,6 +1,7 @@
 import logo from "../components/logo2.jpg";
 import { BsPeople } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
+import { GiSkills } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 
 function Sidebar({
@@ -64,7 +65,7 @@ function Sidebar({
           className={`cursor-pointer rounded px-4 py-2 text-[1.5rem] hover:bg-gray-800 ${isKorean ? "do-hyeon-regular" : ""}`}
         >
           <span className="flex items-center">
-            <CiMap className="mr-[.5rem]" />
+            <GiSkills className="mr-[.5rem]" />
             {isKorean ? "발로란트 랜덤 요원" : "Valorant random agent"}
           </span>
         </li>
