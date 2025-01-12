@@ -19,7 +19,7 @@ function Sidebar({
   };
   return (
     <div
-      className={`fixed left-0 top-0 z-[1100] h-full w-[21rem] bg-black bg-opacity-90 text-white transition-transform duration-300 ${
+      className={`fixed left-0 top-0 z-[3000] h-full w-[21rem] bg-black bg-opacity-90 text-white transition-transform duration-300 ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >

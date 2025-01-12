@@ -24,7 +24,10 @@ import React, {
 const players = Array.from({ length: 10 }, (_, index) => `Player ${index + 1}`);
 
 const backgroundImages = [l1, l2, l3, l4, l5, l6, l7, l8];
+
 export default function Lol() {
+  const [isMaintenanceMode, setIsMaintenanceMode] = useState(true);
+
   const backgroundImage = useMemo(() => {
     return backgroundImages[
       Math.floor(Math.random() * backgroundImages.length)
@@ -182,7 +185,9 @@ export default function Lol() {
 
   return (
     <div
-      className="scrollbar-custom page-container lol__container relative flex flex-col items-center overflow-y-auto pt-[9vh]"
+      className={`scrollbar-custom page-container lol__container relative flex flex-col items-center overflow-y-auto pt-[9vh] ${
+        isMaintenanceMode ? "pointer-events-none" : ""
+      }`}
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
@@ -199,8 +204,7 @@ export default function Lol() {
           />
         ))}
       </div>
-
-      <div className="z-[10000] mb-[1.3rem] mt-[0.4rem] flex justify-center bg-transparent">
+      <div className="z-[1000] mb-[1.3rem] mt-[0.4rem] flex justify-center bg-transparent">
         <button
           className="sparkle fixed bottom-[4.5vh] mt-[2vh] flex h-[6vh] items-center justify-center rounded-md bg-gradient-to-r from-rose-800 to-amber-700 px-4 py-2 text-[30px] text-white shadow-rose-900/50 hover:from-rose-700 hover:to-amber-600 hover:shadow-rose-900/70 focus:ring-2 active:from-rose-900 active:to-amber-800 active:outline-none active:ring-rose-700 active:ring-offset-2"
           style={{
@@ -216,19 +220,30 @@ export default function Lol() {
           </span>
         </button>
       </div>
-
       <ResultModalLol
         isOpen={isModalOpen}
         teams={teams}
         onClose={handleCloseModal}
         generateShareableLink={generateShareableLink}
       />
-
       {isWarningModalOpen && (
         <WarningModal
           onClose={handleCloseWarningModal}
           onContinue={handleContinueWithDefaults}
         />
+      )}
+      {isMaintenanceMode && (
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-white/50">
+          <div className="rounded-md bg-white p-8 shadow-md">
+            <h1 className="do-hyeon-regular text-center text-2xl font-bold text-amber-500">
+              Sorry for the inconvenience
+            </h1>
+            <p className="do-hyeon-regular mt-4 flex items-center justify-center text-xl text-black">
+              This feature is currently unavailable due to algorithm improvement
+              work.
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );
