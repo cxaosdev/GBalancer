@@ -2,6 +2,7 @@ import logo from "../components/logo2.jpg";
 import { BsPeople } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
 import { GiSkills } from "react-icons/gi";
+import { IoInformationCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 function Sidebar({
@@ -19,7 +20,7 @@ function Sidebar({
   };
   return (
     <div
-      className={`fixed left-0 top-0 z-[3000] h-full w-[21rem] bg-black bg-opacity-90 text-white transition-transform duration-300 ${
+      className={`fixed left-0 top-0 z-[3000] h-full w-[20rem] bg-[#0C0D0D] bg-opacity-95 text-white transition-transform duration-300 ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -70,6 +71,9 @@ function Sidebar({
           </span>
         </li>
       </ul>
+      <div className="absolute bottom-5 left-5">
+        <IoInformationCircleSharp className="text-2xl" />
+      </div>
     </div>
   );
 }

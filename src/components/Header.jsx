@@ -37,7 +37,7 @@ function Header({ selectedGame, setSelectedGame, isKorean, toggleLanguage }) {
   };
 
   return (
-    <div className="header fixed left-0 top-0 z-[4000] flex h-[6vh] w-full items-center justify-between bg-black bg-opacity-90 p-0">
+    <div className="header fixed left-0 top-0 z-[5000] flex h-[6vh] w-full items-center justify-between bg-[#0C0D0D] bg-opacity-90 p-0">
       {/* 햄버거 */}
       <div className="flex">
         <button

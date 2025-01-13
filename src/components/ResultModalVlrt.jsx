@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { FaClipboard, FaImage, FaLink } from "react-icons/fa";
-import { toPng } from "html-to-image";
 import tierColors from "../styles/constants.json";
+import { toPng } from "html-to-image";
+import { FaClipboard, FaImage, FaLink } from "react-icons/fa";
 
 export default function ResultModalVlrt({
   isOpen,
@@ -95,24 +95,24 @@ export default function ResultModalVlrt({
         {/* Team Details and Points */}
         <div className="grid grid-cols-[auto-fit] gap-2 bg-transparent sm:grid-cols-2">
           {/* Team 1 */}
-          <div className="p-3 text-white bg-transparent rounded-lg">
-            <h2 className="text-4xl font-semibold text-center text-yellow-300 bg-transparent">
+          <div className="rounded-lg bg-transparent p-3 text-white">
+            <h2 className="bg-transparent text-center text-4xl font-semibold text-yellow-300">
               Team 1
             </h2>
-            <h2 className="mb-6 text-2xl font-semibold text-center text-yellow-300 bg-transparent">
+            <h2 className="mb-6 bg-transparent text-center text-2xl font-semibold text-yellow-300">
               [ Total Points: {teams.team1Pts} ]
             </h2>
             <ul className="space-y-4 bg-transparent">
               {teams.team1.map((player, index) => (
                 <li
                   key={index}
-                  className="flex justify-between p-3 bg-opacity-50 rounded-lg shadow-md bg-zinc-900"
+                  className="flex justify-between rounded-lg bg-zinc-900 bg-opacity-50 p-3 px-5 shadow-md"
                 >
-                  <span className="text-2xl bg-transparent do-hyeon-regular">
+                  <span className="do-hyeon-regular bg-transparent text-2xl">
                     {player.playerName}
                   </span>
                   <span
-                    className="text-xl bg-transparent"
+                    className="bg-transparent text-xl"
                     style={{ color: tierColors.vlrt_color[player.tier] }}
                   >
                     {player.tier}
@@ -123,24 +123,24 @@ export default function ResultModalVlrt({
           </div>
 
           {/* Team 2 */}
-          <div className="p-3 text-white bg-transparent rounded-lg">
-            <h2 className="text-4xl font-semibold text-center text-yellow-300 bg-transparent">
+          <div className="rounded-lg bg-transparent p-3 text-white">
+            <h2 className="bg-transparent text-center text-4xl font-semibold text-yellow-300">
               Team 2
             </h2>
-            <h2 className="mb-6 text-2xl font-semibold text-center text-yellow-300 bg-transparent">
+            <h2 className="mb-6 bg-transparent text-center text-2xl font-semibold text-yellow-300">
               [ Total Points: {teams.team2Pts} ]
             </h2>
             <ul className="space-y-4 bg-transparent">
               {teams.team2.map((player, index) => (
                 <li
                   key={index}
-                  className="flex justify-between p-3 bg-opacity-50 rounded-lg shadow-md bg-zinc-900"
+                  className="flex justify-between rounded-lg bg-zinc-900 bg-opacity-50 p-3 px-5 shadow-md"
                 >
-                  <span className="text-2xl bg-transparent do-hyeon-regular">
+                  <span className="do-hyeon-regular bg-transparent text-2xl">
                     {player.playerName}
                   </span>
                   <span
-                    className="text-xl bg-transparent"
+                    className="bg-transparent text-xl"
                     style={{ color: tierColors.vlrt_color[player.tier] }}
                   >
                     {player.tier}
@@ -151,14 +151,14 @@ export default function ResultModalVlrt({
           </div>
 
           {/* Point Difference */}
-          <div className="col-span-2 text-center bg-transparent">
-            <h2 className="mb-2 text-4xl font-bold text-yellow-300 bg-transparent">
+          <div className="col-span-2 bg-transparent text-center">
+            <h2 className="mb-2 bg-transparent text-4xl font-bold text-yellow-300">
               Point Difference: {Math.abs(teams.team1Pts - teams.team2Pts)}
             </h2>
           </div>
         </div>
 
-        <div className="flex justify-center gap-4 mt-4">
+        <div className="mt-4 flex justify-center gap-4">
           <button
             onClick={copyToClipboard}
             className="flex items-center gap-2 text-xl text-white hover:text-yellow-300"

@@ -7,6 +7,7 @@ import tierColors from "../styles/constants.json";
 import topLaneImage from "../assets/lol_lane/top.svg";
 import { toPng } from "html-to-image";
 import { FaClipboard, FaImage, FaLink } from "react-icons/fa";
+import { IoWarning } from "react-icons/io5";
 
 export default function ResultModalLol({
   isOpen,
@@ -97,7 +98,7 @@ export default function ResultModalLol({
     >
       <div
         ref={modalRef}
-        className="relative w-[60em] min-w-[55em] rounded-lg bg-gradient-to-r from-purple-800 to-indigo-900 p-7 shadow-2xl"
+        className="relative rounded-lg bg-gradient-to-r from-purple-800 to-indigo-900 p-7 px-20 shadow-2xl"
       >
         <button
           className="absolute right-4 top-0 text-[50px] text-white hover:text-yellow-300"
@@ -112,18 +113,28 @@ export default function ResultModalLol({
         ></div>
 
         {/* 포지션 부족 경고 */}
-        {teams.missingOrInsufficientPositions?.length > 0 ||
-        teams.missingOrInsufficientPositions?.length > 0 ? (
+        {teams.missingOrInsufficientPositions?.length > 0 ? (
           <div className="text-center">
             <h2 className="flex items-center justify-center gap-2 bg-transparent text-4xl font-bold">
-              <span className="text-white">❗️Need more players for..</span>
+              <span className="flex space-x-2 text-amber-300">
+                <IoWarning className="text-amber-300" />
+                <span className="text-amber-300">Need more players for..</span>
+              </span>
             </h2>
             <div className="mt-5 text-4xl">
               {teams.missingOrInsufficientPositions.map((pos, index) => (
-                <span className="text-amber-300" key={pos}>
-                  {pos.charAt(0).toUpperCase() + pos.slice(1)}
+                <span
+                  className="items-center justify-center gap-2 text-center"
+                  key={pos}
+                >
+                  <img
+                    src={laneIcons[pos]}
+                    alt={pos}
+                    className="inline-block h-8 w-8"
+                  />
+                  {/* {pos.charAt(0).toUpperCase() + pos.slice(1)} */}
                   {index < teams.missingOrInsufficientPositions.length - 1
-                    ? ", "
+                    ? " "
                     : ""}
                 </span>
               ))}
@@ -144,13 +155,13 @@ export default function ResultModalLol({
                   {teams.team1.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center rounded-lg bg-zinc-900 bg-opacity-50 shadow-md"
+                      className="flex items-center justify-center rounded-lg bg-zinc-900 bg-opacity-60 p-1 px-5 shadow-md"
                       style={{ padding: "1em" }}
                     >
                       <img
                         src={laneIcons[player.position]}
                         alt={player.position}
-                        className="mr-2 h-8 w-8"
+                        className="mr-2 h-7 w-7"
                       />
 
                       <span className="do-hyeon-regular flex-grow text-center text-2xl text-white">
@@ -183,7 +194,7 @@ export default function ResultModalLol({
                   {teams.team2.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center rounded-lg bg-zinc-900 bg-opacity-50 shadow-md"
+                      className="flex items-center rounded-lg bg-zinc-900 bg-opacity-60 shadow-md"
                       style={{ padding: "1em" }}
                     >
                       <img
