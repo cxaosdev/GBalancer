@@ -148,8 +148,8 @@ export default function ResultModalLol({
                       style={{ padding: "1em" }}
                     >
                       <img
-                        src={laneIcons[player.selectedLanes[0]]}
-                        alt={player.selectedLanes[0]}
+                        src={laneIcons[player.position]}
+                        alt={player.position}
                         className="mr-2 h-8 w-8"
                       />
 
@@ -187,8 +187,8 @@ export default function ResultModalLol({
                       style={{ padding: "1em" }}
                     >
                       <img
-                        src={laneIcons[player.selectedLanes[0]]}
-                        alt={player.selectedLanes[0]}
+                        src={laneIcons[player.position]}
+                        alt={player.position}
                         className="mr-2 h-8 w-8"
                       />
 

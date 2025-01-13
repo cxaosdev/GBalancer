@@ -1,10 +1,11 @@
-import React, { useState, useEffect, memo } from "react";
-import topLaneImage from "../assets/lol_lane/top.svg";
+import React, { memo, useEffect, useState } from "react";
+import adcLaneImage from "../assets/lol_lane/adc.svg";
 import jungleLaneImage from "../assets/lol_lane/jungle.svg";
 import midLaneImage from "../assets/lol_lane/mid.svg";
-import adcLaneImage from "../assets/lol_lane/adc.svg";
 import supportLaneImage from "../assets/lol_lane/support.svg";
 import tierColors from "../styles/constants.json";
+import topLaneImage from "../assets/lol_lane/top.svg";
+import { FaAsterisk } from "react-icons/fa";
 
 const PlayerLol = memo(({ playerNum, playerData, handlePlayerChange }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -47,7 +48,7 @@ const PlayerLol = memo(({ playerNum, playerData, handlePlayerChange }) => {
 
   return (
     <div className="player mt-[0.5vh] flex justify-center">
-      <section className="flex items-center justify-between players">
+      <section className="players flex items-center justify-between">
         <input
           type="text"
           className="players__input-name w-[7em] text-[1.3em]"
@@ -64,7 +65,7 @@ const PlayerLol = memo(({ playerNum, playerData, handlePlayerChange }) => {
         >
           {lanes.map((lane) => (
             <div
-              className="flex items-center justify-between lane"
+              className="lane flex items-center justify-between"
               key={lane.id}
             >
               <input
@@ -79,7 +80,7 @@ const PlayerLol = memo(({ playerNum, playerData, handlePlayerChange }) => {
               />
               <label
                 htmlFor={`player${playerNum}-${lane.id}`}
-                className="flex items-center rounded-sm players__lanes opacity-90"
+                className="players__lanes flex items-center rounded-sm opacity-90"
               >
                 <img
                   src={lane.image}
@@ -92,7 +93,7 @@ const PlayerLol = memo(({ playerNum, playerData, handlePlayerChange }) => {
 
           <div className="ml-[1vw] flex items-center justify-between">
             {isSmView ? (
-              <div className="relative tier-selection-dropdown">
+              <div className="tier-selection-dropdown relative">
                 <div
                   className="tier-dropdown ml-[2vw] flex w-[7em] cursor-pointer items-center justify-center rounded-md bg-white text-center text-[1.3em]"
                   onClick={toggleDropdown}
@@ -130,7 +131,7 @@ const PlayerLol = memo(({ playerNum, playerData, handlePlayerChange }) => {
                 )}
               </div>
             ) : isLgView ? (
-              <div className="flex-col mt-3 ml-3">
+              <div className="ml-3 mt-3 flex-col">
                 <div className="flex justify-start">
                   {tiers.slice(0, 5).map((tier) => (
                     <div className="tier" key={tier.id}>
