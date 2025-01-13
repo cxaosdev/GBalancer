@@ -26,7 +26,7 @@ const players = Array.from({ length: 10 }, (_, index) => `Player ${index + 1}`);
 const backgroundImages = [l1, l2, l3, l4, l5, l6, l7, l8];
 
 export default function Lol() {
-  const [isMaintenanceMode, setIsMaintenanceMode] = useState(true);
+  const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
 
   const backgroundImage = useMemo(() => {
     return backgroundImages[
@@ -120,6 +120,7 @@ export default function Lol() {
     if (isAnyFieldEmpty) {
       setIsWarningModalOpen(true);
     } else {
+      console.log(playerData);
       handleGenerateSpinner(playerData);
     }
   };
@@ -234,11 +235,11 @@ export default function Lol() {
       )}
       {isMaintenanceMode && (
         <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-white/50">
-          <div className="rounded-md bg-white p-8 shadow-md">
-            <h1 className="do-hyeon-regular text-center text-2xl font-bold text-amber-500">
+          <div className="p-8 bg-white rounded-md shadow-md">
+            <h1 className="text-2xl font-bold text-center do-hyeon-regular text-amber-500">
               Sorry for the inconvenience
             </h1>
-            <p className="do-hyeon-regular mt-4 flex items-center justify-center text-xl text-black">
+            <p className="flex items-center justify-center mt-4 text-xl text-black do-hyeon-regular">
               This feature is currently unavailable due to algorithm improvement
               work.
             </p>

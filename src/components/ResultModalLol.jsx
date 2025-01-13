@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
-import { FaClipboard, FaImage, FaLink } from "react-icons/fa";
-import { toPng } from "html-to-image";
-import topLaneImage from "../assets/lol_lane/top.svg";
+import adcLaneImage from "../assets/lol_lane/adc.svg";
 import jungleLaneImage from "../assets/lol_lane/jungle.svg";
 import midLaneImage from "../assets/lol_lane/mid.svg";
-import adcLaneImage from "../assets/lol_lane/adc.svg";
 import supportLaneImage from "../assets/lol_lane/support.svg";
 import tierColors from "../styles/constants.json";
+import topLaneImage from "../assets/lol_lane/top.svg";
+import { toPng } from "html-to-image";
+import { FaClipboard, FaImage, FaLink } from "react-icons/fa";
 
 export default function ResultModalLol({
   isOpen,
@@ -89,6 +89,7 @@ export default function ResultModalLol({
     support: supportLaneImage,
   };
 
+  console.log("123", teams);
   return (
     <div
       className="modal__overlay fixed inset-0 z-[100000] flex items-center justify-center bg-black bg-opacity-65"
@@ -111,17 +112,19 @@ export default function ResultModalLol({
         ></div>
 
         {/* 포지션 부족 경고 */}
-        {teams.missingPositions?.length > 0 ||
-        teams.insufficientPositions?.length > 0 ? (
+        {teams.missingOrInsufficientPositions?.length > 0 ||
+        teams.missingOrInsufficientPositions?.length > 0 ? (
           <div className="text-center">
-            <h2 className="flex items-center justify-center gap-2 text-4xl font-bold bg-transparent">
+            <h2 className="flex items-center justify-center gap-2 bg-transparent text-4xl font-bold">
               <span className="text-white">❗️Need more players for..</span>
             </h2>
-            <div className="mt-2 text-3xl">
-              {teams.missingPositions.map((pos, index) => (
+            <div className="mt-5 text-4xl">
+              {teams.missingOrInsufficientPositions.map((pos, index) => (
                 <span className="text-amber-300" key={pos}>
                   {pos.charAt(0).toUpperCase() + pos.slice(1)}
-                  {index < teams.missingPositions.length - 1 ? ", " : ""}
+                  {index < teams.missingOrInsufficientPositions.length - 1
+                    ? ", "
+                    : ""}
                 </span>
               ))}
             </div>
@@ -130,32 +133,32 @@ export default function ResultModalLol({
           <>
             <div className="grid grid-cols-[auto-fit] gap-2 bg-transparent sm:grid-cols-2">
               {/* Team 1 */}
-              <div className="p-3 text-white bg-transparent rounded-lg">
-                <h2 className="text-4xl font-semibold text-center text-yellow-300 bg-transparent">
+              <div className="rounded-lg bg-transparent p-3 text-white">
+                <h2 className="bg-transparent text-center text-4xl font-semibold text-yellow-300">
                   Team 1
                 </h2>
-                <h2 className="mb-6 text-2xl font-semibold text-center text-yellow-300 bg-transparent">
+                <h2 className="mb-6 bg-transparent text-center text-2xl font-semibold text-yellow-300">
                   [ Total Points: {teams.team1Pts || 0} ]
                 </h2>
                 <ul className="space-y-4 bg-transparent">
                   {teams.team1.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center bg-opacity-50 rounded-lg shadow-md bg-zinc-900"
+                      className="flex items-center rounded-lg bg-zinc-900 bg-opacity-50 shadow-md"
                       style={{ padding: "1em" }}
                     >
                       <img
                         src={laneIcons[player.selectedLanes[0]]}
                         alt={player.selectedLanes[0]}
-                        className="w-8 h-8 mr-2"
+                        className="mr-2 h-8 w-8"
                       />
 
-                      <span className="flex-grow text-2xl text-center text-white do-hyeon-regular">
+                      <span className="do-hyeon-regular flex-grow text-center text-2xl text-white">
                         {player.playerName}
                       </span>
 
                       <span
-                        className="text-xl text-right text-white"
+                        className="text-right text-xl text-white"
                         style={{
                           color: tierColors.lol_color[player.tier],
                           minWidth: "11em",
@@ -169,32 +172,32 @@ export default function ResultModalLol({
               </div>
 
               {/* Team 2 */}
-              <div className="p-3 text-white bg-transparent rounded-lg">
-                <h2 className="text-4xl font-semibold text-center text-yellow-300 bg-transparent">
+              <div className="rounded-lg bg-transparent p-3 text-white">
+                <h2 className="bg-transparent text-center text-4xl font-semibold text-yellow-300">
                   Team 2
                 </h2>
-                <h2 className="mb-6 text-2xl font-semibold text-center text-yellow-300 bg-transparent">
+                <h2 className="mb-6 bg-transparent text-center text-2xl font-semibold text-yellow-300">
                   [ Total Points: {teams.team2Pts || 0} ]
                 </h2>
                 <ul className="space-y-4 bg-transparent">
                   {teams.team2.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center bg-opacity-50 rounded-lg shadow-md bg-zinc-900"
+                      className="flex items-center rounded-lg bg-zinc-900 bg-opacity-50 shadow-md"
                       style={{ padding: "1em" }}
                     >
                       <img
                         src={laneIcons[player.selectedLanes[0]]}
                         alt={player.selectedLanes[0]}
-                        className="w-8 h-8 mr-2"
+                        className="mr-2 h-8 w-8"
                       />
 
-                      <span className="flex-grow text-2xl text-center text-white do-hyeon-regular">
+                      <span className="do-hyeon-regular flex-grow text-center text-2xl text-white">
                         {player.playerName}
                       </span>
 
                       <span
-                        className="text-xl text-right text-white"
+                        className="text-right text-xl text-white"
                         style={{
                           color: tierColors.lol_color[player.tier],
                           minWidth: "11em",
@@ -208,8 +211,8 @@ export default function ResultModalLol({
               </div>
 
               {/* Point Difference*/}
-              <div className="col-span-2 text-center bg-transparent">
-                <h2 className="mb-2 text-4xl font-bold text-yellow-300 bg-transparent">
+              <div className="col-span-2 bg-transparent text-center">
+                <h2 className="mb-2 bg-transparent text-4xl font-bold text-yellow-300">
                   Point Difference:{" "}
                   {Math.abs((teams.team1Pts || 0) - (teams.team2Pts || 0))}
                 </h2>
@@ -222,7 +225,7 @@ export default function ResultModalLol({
               </div>
             </div>
 
-            <div className="flex justify-center gap-4 mt-4">
+            <div className="mt-4 flex justify-center gap-4">
               <button
                 onClick={copyToClipboard}
                 className="flex items-center gap-2 text-xl text-white hover:text-yellow-300"

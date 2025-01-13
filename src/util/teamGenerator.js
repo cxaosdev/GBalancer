@@ -1,3 +1,5 @@
+import { tierToPoints_lol } from "./tierPoints";
+
 export const generateVlrtTeams = (players) => {
   const combinations = (arr, k) => {
     if (k === 0) return [[]];
@@ -38,22 +40,43 @@ export const generateVlrtTeams = (players) => {
 export const generateLolTeams = (players) => {
   const positions = ["top", "jungle", "mid", "adc", "support"];
 
+  // 포지션별로 플레이어를 분류하고 점수 기준으로 정렬
   const playersByPosition = positions.reduce((acc, position) => {
     acc[position] = players
-      .filter((player) => (player.selectedLanes || []).includes(position))
-      .sort((a, b) => b.pts - a.pts);
+      .filter(
+        (player) =>
+          (player.selectedLanes || []).includes(position) &&
+          player.tier &&
+          tierToPoints_lol[player.tier] &&
+          tierToPoints_lol[player.tier][position] > 0,
+      )
+      .map((player) => ({
+        ...player,
+        pts: tierToPoints_lol[player.tier][position], // 포지션별 점수 반영
+      }))
+      .sort((a, b) => b.pts - a.pts); // 높은 점수 순으로 정렬
     return acc;
   }, {});
 
-  for (let position of positions) {
-    if (playersByPosition[position].length < 2) {
-      return { missingOrInsufficientPositions: [position] };
-    }
+  // 모든 포지션에 최소 2명의 플레이어가 있는지 검증
+  const missingOrInsufficientPositions = positions.filter(
+    (position) => playersByPosition[position].length < 2,
+  );
+  if (missingOrInsufficientPositions.length > 0) {
+    return {
+      team1: [],
+      team1Pts: 0,
+      team2: [],
+      team2Pts: 0,
+      largeDifference: false,
+      missingOrInsufficientPositions,
+    };
   }
 
   let optimalTeams = null;
   let minDifference = Infinity;
 
+  // 재귀적으로 팀을 생성하여 최적의 조합 찾기
   const generateTeams = (
     positionIndex,
     team1,
@@ -65,6 +88,7 @@ export const generateLolTeams = (players) => {
     if (positionIndex === positions.length) {
       const difference = Math.abs(team1Pts - team2Pts);
 
+      // 최적의 팀 조합 업데이트
       if (difference < minDifference) {
         minDifference = difference;
         optimalTeams = {
@@ -72,7 +96,7 @@ export const generateLolTeams = (players) => {
           team2: [...team2],
           team1Pts,
           team2Pts,
-          largeDifference: difference > 10,
+          largeDifference: difference > 10, // 점수 차이가 클 경우 플래그 설정
         };
       }
       return;
@@ -81,29 +105,35 @@ export const generateLolTeams = (players) => {
     const position = positions[positionIndex];
     const playersForPosition = playersByPosition[position];
 
+    // 가능한 모든 조합을 탐색
     for (let i = 0; i < playersForPosition.length; i++) {
       const playerForTeam1 = playersForPosition[i];
-      if (usedPlayers.has(playerForTeam1)) continue;
+      if (usedPlayers.has(playerForTeam1.playerName)) continue;
 
       for (let j = 0; j < playersForPosition.length; j++) {
-        if (i === j) continue;
         const playerForTeam2 = playersForPosition[j];
-        if (usedPlayers.has(playerForTeam2)) continue;
+        if (
+          playerForTeam1.playerName === playerForTeam2.playerName ||
+          usedPlayers.has(playerForTeam2.playerName)
+        )
+          continue;
 
-        usedPlayers.add(playerForTeam1);
-        usedPlayers.add(playerForTeam2);
+        // 플레이어를 팀에 추가
+        usedPlayers.add(playerForTeam1.playerName);
+        usedPlayers.add(playerForTeam2.playerName);
 
         generateTeams(
           positionIndex + 1,
-          [...team1, playerForTeam1],
-          [...team2, playerForTeam2],
+          [...team1, { ...playerForTeam1, position }],
+          [...team2, { ...playerForTeam2, position }],
           team1Pts + playerForTeam1.pts,
           team2Pts + playerForTeam2.pts,
           usedPlayers,
         );
 
-        usedPlayers.delete(playerForTeam1);
-        usedPlayers.delete(playerForTeam2);
+        // 플레이어를 팀에서 제거
+        usedPlayers.delete(playerForTeam1.playerName);
+        usedPlayers.delete(playerForTeam2.playerName);
       }
     }
   };
@@ -121,6 +151,7 @@ export const generateLolTeams = (players) => {
     };
   }
 
+  // 팀을 포지션 순서대로 정렬
   const sortTeamByPosition = (team) => {
     return team.sort(
       (a, b) => positions.indexOf(a.position) - positions.indexOf(b.position),
