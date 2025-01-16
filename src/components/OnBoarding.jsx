@@ -22,7 +22,6 @@ export default function Onboarding({ isKorean }) {
     navigate("/home");
   };
 
-  // 버튼 클릭 시 해당 섹션으로 스크롤
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -57,7 +56,7 @@ export default function Onboarding({ isKorean }) {
         className="mt-[3rem] flex w-[45rem] flex-col items-center justify-center rounded-xl bg-black bg-opacity-70"
       >
         <div className="mb-8 pt-[4rem]">
-          <div className="do-hyeon-regular flex items-center justify-center space-x-2 text-4xl">
+          <div className="flex items-center justify-center space-x-2 text-4xl do-hyeon-regular">
             <BsPeople />
             <span>{isKorean ? "팀 밸런서" : "Team Balancer"}</span>
           </div>
@@ -88,7 +87,7 @@ export default function Onboarding({ isKorean }) {
               {isKorean
                 ? "'Generate Fair Match!' 버튼을 클릭하여 결과를 확인하세요."
                 : "Click 'Generate Fair Match!' to see the balanced match results."}
-              <div className="flex w-full justify-center">
+              <div className="flex justify-center w-full">
                 <button className="sparkle New-Amsterdam mt-[2vh] flex h-[6vh] cursor-default items-center justify-center rounded-md bg-gradient-to-r from-rose-800 to-amber-700 px-4 py-2 text-[30px] text-white shadow-rose-900/50">
                   Generate Fair Match!
                 </button>
@@ -102,7 +101,7 @@ export default function Onboarding({ isKorean }) {
         className="mt-[3rem] flex w-[45rem] flex-col items-center justify-center rounded-xl bg-black bg-opacity-70"
       >
         <div className="mb-[1rem] pt-[4rem]">
-          <div className="do-hyeon-regular flex items-center justify-center space-x-2 text-4xl">
+          <div className="flex items-center justify-center space-x-2 text-4xl do-hyeon-regular">
             <CiMap />
             <span>{isKorean ? "랜덤 맵" : "Random Map"}</span>
           </div>
@@ -130,7 +129,7 @@ export default function Onboarding({ isKorean }) {
         className="mb-[5rem] mt-[3rem] flex w-[45rem] flex-col items-center justify-center rounded-xl bg-black bg-opacity-70"
       >
         <div className="mb-8 pt-[4rem]">
-          <div className="do-hyeon-regular flex items-center justify-center space-x-2 text-4xl">
+          <div className="flex items-center justify-center space-x-2 text-4xl do-hyeon-regular">
             <CiMap />
             <span>{isKorean ? "랜덤 요원" : "Random Agent"}</span>
           </div>

@@ -98,7 +98,7 @@ export default function ResultModalLol({
     >
       <div
         ref={modalRef}
-        className="relative rounded-lg bg-gradient-to-r from-purple-800 to-indigo-900 p-7 px-20 shadow-2xl"
+        className="relative px-20 rounded-lg shadow-2xl bg-gradient-to-r from-purple-800 to-indigo-900 p-7"
       >
         <button
           className="absolute right-4 top-0 text-[50px] text-white hover:text-yellow-300"
@@ -112,10 +112,9 @@ export default function ResultModalLol({
           className="fixed bottom-8 left-1/2 -translate-x-1/2 transform rounded-md bg-zinc-700 px-4 py-2 text-[1.3em] text-white opacity-0 shadow-lg transition-opacity duration-500 ease-out"
         ></div>
 
-        {/* 포지션 부족 경고 */}
         {teams.missingOrInsufficientPositions?.length > 0 ? (
           <div className="text-center">
-            <h2 className="flex items-center justify-center gap-2 bg-transparent text-4xl font-bold">
+            <h2 className="flex items-center justify-center gap-2 text-4xl font-bold bg-transparent">
               <span className="flex space-x-2 text-amber-300">
                 <IoWarning className="text-amber-300" />
                 <span className="text-amber-300">Need more players for..</span>
@@ -130,9 +129,8 @@ export default function ResultModalLol({
                   <img
                     src={laneIcons[pos]}
                     alt={pos}
-                    className="inline-block h-8 w-8"
+                    className="inline-block w-8 h-8"
                   />
-                  {/* {pos.charAt(0).toUpperCase() + pos.slice(1)} */}
                   {index < teams.missingOrInsufficientPositions.length - 1
                     ? " "
                     : ""}
@@ -144,18 +142,18 @@ export default function ResultModalLol({
           <>
             <div className="grid grid-cols-[auto-fit] gap-2 bg-transparent sm:grid-cols-2">
               {/* Team 1 */}
-              <div className="rounded-lg bg-transparent p-3 text-white">
-                <h2 className="bg-transparent text-center text-4xl font-semibold text-yellow-300">
+              <div className="p-3 text-white bg-transparent rounded-lg">
+                <h2 className="text-4xl font-semibold text-center text-yellow-300 bg-transparent">
                   Team 1
                 </h2>
-                <h2 className="mb-6 bg-transparent text-center text-2xl font-semibold text-yellow-300">
+                <h2 className="mb-6 text-2xl font-semibold text-center text-yellow-300 bg-transparent">
                   [ Total Points: {teams.team1Pts || 0} ]
                 </h2>
                 <ul className="space-y-4 bg-transparent">
                   {teams.team1.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center justify-center rounded-lg bg-zinc-900 bg-opacity-60 p-1 px-5 shadow-md"
+                      className="flex items-center justify-center p-1 px-5 rounded-lg shadow-md bg-zinc-900 bg-opacity-60"
                       style={{ padding: "1em" }}
                     >
                       <img
@@ -164,12 +162,12 @@ export default function ResultModalLol({
                         className="mr-2 h-7 w-7"
                       />
 
-                      <span className="do-hyeon-regular flex-grow text-center text-2xl text-white">
+                      <span className="flex-grow text-2xl text-center text-white do-hyeon-regular">
                         {player.playerName}
                       </span>
 
                       <span
-                        className="text-right text-xl text-white"
+                        className="text-xl text-right text-white"
                         style={{
                           color: tierColors.lol_color[player.tier],
                           minWidth: "11em",
@@ -183,32 +181,32 @@ export default function ResultModalLol({
               </div>
 
               {/* Team 2 */}
-              <div className="rounded-lg bg-transparent p-3 text-white">
-                <h2 className="bg-transparent text-center text-4xl font-semibold text-yellow-300">
+              <div className="p-3 text-white bg-transparent rounded-lg">
+                <h2 className="text-4xl font-semibold text-center text-yellow-300 bg-transparent">
                   Team 2
                 </h2>
-                <h2 className="mb-6 bg-transparent text-center text-2xl font-semibold text-yellow-300">
+                <h2 className="mb-6 text-2xl font-semibold text-center text-yellow-300 bg-transparent">
                   [ Total Points: {teams.team2Pts || 0} ]
                 </h2>
                 <ul className="space-y-4 bg-transparent">
                   {teams.team2.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center rounded-lg bg-zinc-900 bg-opacity-60 shadow-md"
+                      className="flex items-center rounded-lg shadow-md bg-zinc-900 bg-opacity-60"
                       style={{ padding: "1em" }}
                     >
                       <img
                         src={laneIcons[player.position]}
                         alt={player.position}
-                        className="mr-2 h-8 w-8"
+                        className="w-8 h-8 mr-2"
                       />
 
-                      <span className="do-hyeon-regular flex-grow text-center text-2xl text-white">
+                      <span className="flex-grow text-2xl text-center text-white do-hyeon-regular">
                         {player.playerName}
                       </span>
 
                       <span
-                        className="text-right text-xl text-white"
+                        className="text-xl text-right text-white"
                         style={{
                           color: tierColors.lol_color[player.tier],
                           minWidth: "11em",
@@ -222,8 +220,8 @@ export default function ResultModalLol({
               </div>
 
               {/* Point Difference*/}
-              <div className="col-span-2 bg-transparent text-center">
-                <h2 className="mb-2 bg-transparent text-4xl font-bold text-yellow-300">
+              <div className="col-span-2 text-center bg-transparent">
+                <h2 className="mb-2 text-4xl font-bold text-yellow-300 bg-transparent">
                   Point Difference:{" "}
                   {Math.abs((teams.team1Pts || 0) - (teams.team2Pts || 0))}
                 </h2>
@@ -236,7 +234,7 @@ export default function ResultModalLol({
               </div>
             </div>
 
-            <div className="mt-4 flex justify-center gap-4">
+            <div className="flex justify-center gap-4 mt-4">
               <button
                 onClick={copyToClipboard}
                 className="flex items-center gap-2 text-xl text-white hover:text-yellow-300"
