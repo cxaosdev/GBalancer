@@ -1,3 +1,10 @@
+import LeagueLogo from "../assets/logo/LeagueOfLegends.webp";
+import LolBackground from "../assets/league of legends/c-o-war-2020-01.webp";
+import Onboarding from "components/OnBoarding";
+import ValorantBackground from "../assets/valorant/Valorant_EP-8-Teaser_The-arrival.webp";
+import ValorantLogo from "../assets/logo/Valorant.svg";
+import { useNavigate } from "react-router-dom";
+
 import React, {
   useEffect,
   useLayoutEffect,
@@ -6,13 +13,6 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
-import { useNavigate } from "react-router-dom";
-import LeagueLogo from "../assets/logo/LeagueOfLegends.webp";
-import ValorantLogo from "../assets/logo/Valorant.svg";
-import Onboarding from "components/OnBoarding";
-
-import LolBackground from "../assets/league of legends/c-o-war-2020-01.webp";
-import ValorantBackground from "../assets/valorant/Valorant_EP-8-Teaser_The-arrival.webp";
 
 export default function Home({ selectedGame, setSelectedGame, isKorean }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -98,7 +98,7 @@ export default function Home({ selectedGame, setSelectedGame, isKorean }) {
           </button>
         </div>
         <button
-          className={`cursor-pointer rounded-md bg-gradient-to-bl from-rose-900 to-amber-500 px-4 py-3 text-2xl text-[30px] font-semibold text-white shadow-sm hover:from-pink-700 hover:to-amber-400 focus:outline-none focus:ring-0 active:from-red-500 active:to-amber-300 ${isKorean ? "do-hyeon-regular" : ""}`}
+          className={`cursor-pointer rounded-md bg-gradient-to-bl from-rose-900 to-amber-500 px-4 py-3 text-2xl text-[30px] text-white shadow-sm hover:from-pink-700 hover:to-amber-400 focus:outline-none focus:ring-0 active:from-red-500 active:to-amber-300 ${isKorean ? "do-hyeon-regular" : ""}`}
           onClick={handleGetStarted}
           disabled={!selectedGame}
         >
@@ -113,7 +113,7 @@ export default function Home({ selectedGame, setSelectedGame, isKorean }) {
             ▼ {isKorean ? "사용 방법" : "How to use"}
           </span>
         </div>
-        <div ref={onboardingRef}>
+        <div className="mt-[15rem]" ref={onboardingRef}>
           <Onboarding isKorean={isKorean} />
         </div>
       </div>
