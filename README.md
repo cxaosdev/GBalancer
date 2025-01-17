@@ -1,32 +1,37 @@
 # Game Balancer
-[Go to GameBalancer page > ](https://gamebalancer.netlify.app/)
-> 🕹️ A fair match generator for **League of Leagends** and **Valorant** that divides 10 players into two balanced teams based on their **tiers and points**.
-<div align=center>
-  <img src="https://github.com/user-attachments/assets/c1f7cf12-523c-4581-ab0a-2e3a95b74f82" alt="GBlogo" height="100" />
-  <img src="https://github.com/user-attachments/assets/ecd4bacb-06c1-4bd9-bdad-34fa12f65ad6" alt="Valorant" height="100" />
-  <img src="https://github.com/user-attachments/assets/8c814e0e-3f97-4ed3-96a3-4a3161549520" alt="LeagueOfLegends" height="100" />
+
+[Go to GameBalancer page >](https://gamebalancer.netlify.app/)  
+> 🕹️ A fair match generator for **League of Legends** and **Valorant** that divides 10 players into two balanced teams based on their **tiers and points**.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/fcd3ec08-5f2c-4fb7-b126-775196f77dd7" alt="GB Logo" height="100" style="margin: 0 20px;" />
+  <img src="https://github.com/user-attachments/assets/ecd4bacb-06c1-4bd9-bdad-34fa12f65ad6" alt="Valorant Logo" height="100" style="margin: 0 20px;" />
+  <img src="https://github.com/user-attachments/assets/8c814e0e-3f97-4ed3-96a3-4a3161549520" alt="League of Legends Logo" height="100" style="margin: 0 20px;" />
 </div>
-<br>
-<div align=center style="text-align: center; gap:20">
-  <img src="https://github.com/user-attachments/assets/a1a17488-b867-498e-94ea-7d6d83930229" alt="SelectGame" width="900" />
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/a1a17488-b867-498e-94ea-7d6d83930229" alt="Select Game Screen" width="900" style="margin-top: 20px;" />
 </div>
+
+---
 
 ## 🔧 Features
-- 🏅 **Player Tier Input**: Select each player's rank.
+
+### ✨ Key Features
+- 🏅 **Player Tier Input**: Easily select each player's rank and lane preferences.
 - ⚖️ **Fair Team Generation**: Automatically create two balanced teams based on player points.
-- 📊 **Result**: Displays the generated teams and their total points in a modal.
+- 📊 **Results Display**: View the balanced teams and their total points in an intuitive modal.
 
+---
 
-***
+## 📂 Project Structure
 
-## 📑 Project Structure
-```
+```plaintext
 src
 ├── assets
 ├── components
 │   ├── Footer.jsx
 │   ├── Header.jsx
-│   ├── logo.jpg
 │   ├── OnBoarding.jsx
 │   ├── PlayerLol.jsx
 │   ├── PlayerVlrt.jsx
@@ -48,56 +53,64 @@ src
 ├── App.jsx
 ├── index.js
 ```
+
 ---
 
-## 🧮 Algorithm for Team Generation
-- The **tiers are mapped to points** as follows:
-  - Valorant
-  ```
-  Iron: 7, Bronze: 13, Silver: 17, Gold: 25, Platinum: 29, Diamond: 37, Ascendant: 43, Immortal: 45, Radiant: 48
-  ```
-  - League of Legends
-  ```
-  Iron: 7, Bronze: 13, Silver: 17, Gold: 25, Platinum: 32, Emerald: 40, Diamond: 48, Master: 54, GrandMaster: 59, Challenger: 64,
-  ```
-- The players are **sorted by points** in descending order.
-- Players are **distributed between two teams** such that the total points of both teams are as close as possible.
+## 🧮 Team Generation Algorithm
 
-### Valorant Team Generation (`generateVlrtTeams`)
-1. **Generate Combinations**: Create all possible 5-player combinations for `team1`.
-2. **Calculate Differences**: For each combination, calculate the point difference between `team1` and `team2`.
-3. **Find Optimal Teams**: Track the combination with the smallest point difference for the most balanced teams.
-4. **Sort Teams**: Sort `team1` and `team2` by points in descending order.
+### 🎮 Tier-to-Points Mapping:
 
-### League of Legends Team Generation (`generateLolTeams`)
-1. **Organize by Position**: Group players by their selected positions and sort by points.
-2. **Validate Positions**: Ensure each position (Top, Jungle, Mid, ADC, Support) has at least two players. If not, return an error.
-3. **Recursive Team Assignment**: Assign players to `team1` and `team2` for each position, ensuring no player is used in both teams.
-4. **Optimize Balance**: Track and update the team combination with the smallest point difference.
-5. **Sort by Position**: Once optimized, sort each team by position for clarity.
+#### Valorant
+| **Tier**     | **Points** |
+|--------------|------------|
+| Iron         | 7          |
+| Bronze       | 13         |
+| Silver       | 17         |
+| Gold         | 25         |
+| Platinum     | 29         |
+| Diamond      | 37         |
+| Ascendant    | 43         |
+| Immortal     | 45         |
+| Radiant      | 48         |
+
+#### League of Legends
+| **Tier**        | **Top** | **Jungle** | **Mid** | **ADC** | **Support** |
+|------------------|---------|------------|---------|---------|-------------|
+| Challenger       | 56      | 63         | 61      | 58      | 55          |
+| GrandMaster      | 46      | 51         | 49      | 44      | 41          |
+| Master           | 39      | 43         | 41      | 36      | 37          |
+| Diamond          | 32      | 35         | 32      | 30      | 31          |
+| Emerald          | 25      | 27         | 25      | 24      | 23          |
+| Platinum         | 21      | 20         | 19      | 18      | 16          |
+| Gold             | 15      | 14         | 13      | 12      | 11          |
+| Silver           | 13      | 12         | 10      | 9       | 8           |
+| Bronze           | 11      | 7          | 8       | 8       | 7           |
+| Iron             | 7       | 4          | 4       | 4       | 6           |
 
 ---
 
 ## ❓ How to Use
 
-1. **Select Your Game**
-   Choose the game you want to create a balanced match for.
+### 🚀 Quick Steps
 
-   ![SelectGame](https://github.com/user-attachments/assets/7a6c18db-a2ec-4f2e-a8b5-0cb24e1f59f0)
+1. **Select Your Game**  
+   Choose either **League of Legends** or **Valorant** to create a balanced match.  
+   <img src="https://github.com/user-attachments/assets/7a6c18db-a2ec-4f2e-a8b5-0cb24e1f59f0" alt="Game Selection" width="800" style="margin-top: 20px;" />
 
+2. **Input Player Data**  
+   - **Ranks and Positions**: Input player tiers and select their lanes (for League of Legends).  
+   - **Defaults**: Players without a tier selection are assigned the lowest tier by default.  
+     <img src="https://github.com/user-attachments/assets/373d9e63-823e-4487-9625-0f70650acb61" alt="Player Input Screen" width="800" style="margin-top: 20px;" />
 
-3. **Enter Players' Ranks**
+3. **Generate Fair Match**  
+   Click the **Generate Fair Match!** button to view the results in a modal.  
+   <button style="background-color: #fa5c5c; color: #fff; padding: 10px; border-radius: 5px; margin-top: 20px;">Generate Fair Match!</button>
 
-   Input the ranks of each player. Players who do not select a tier will be considered at the lowest tier for calculation purposes.
-   
-   ![ValorantScreen](https://github.com/user-attachments/assets/373d9e63-823e-4487-9625-0f70650acb61)
+---
 
-4. **Generate Fair Match**
-   
-   Click on 'Generate Fair Match!' to see the balanced match results.
-   
-## Contact
+## 📧 Contact
 
-If you have any questions or suggestions, feel free to reach out:  
-📧 **Email**: scy0723123@gmail.com  
-📱 **GitHub**: [cxaos](https://github.com/cxaosdev)
+If you have questions or suggestions, feel free to reach out:  
+📧 Email: **scy0723123@gmail.com**  
+📱 GitHub: [cxaosdev](https://github.com/cxaosdev)
+
