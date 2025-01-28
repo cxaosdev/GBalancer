@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
-import { FaClipboard, FaImage, FaLink } from "react-icons/fa";
-import { toPng } from "html-to-image";
-import topLaneImage from "../assets/lol_lane/top.svg";
+import adcLaneImage from "../assets/lol_lane/adc.svg";
 import jungleLaneImage from "../assets/lol_lane/jungle.svg";
 import midLaneImage from "../assets/lol_lane/mid.svg";
-import adcLaneImage from "../assets/lol_lane/adc.svg";
 import supportLaneImage from "../assets/lol_lane/support.svg";
 import tierColors from "../styles/constants.json";
+import topLaneImage from "../assets/lol_lane/top.svg";
+import { toPng } from "html-to-image";
+import { FaClipboard, FaImage, FaLink } from "react-icons/fa";
+import { IoWarning } from "react-icons/io5";
 
 export default function ResultModalLol({
   isOpen,
@@ -89,6 +90,7 @@ export default function ResultModalLol({
     support: supportLaneImage,
   };
 
+  console.log("123", teams);
   return (
     <div
       className="modal__overlay fixed inset-0 z-[100000] flex items-center justify-center bg-black bg-opacity-65"
@@ -96,7 +98,7 @@ export default function ResultModalLol({
     >
       <div
         ref={modalRef}
-        className="relative w-[60em] min-w-[55em] rounded-lg bg-gradient-to-r from-purple-800 to-indigo-900 p-7 shadow-2xl"
+        className="relative px-20 rounded-lg shadow-2xl bg-gradient-to-r from-purple-800 to-indigo-900 p-7"
       >
         <button
           className="absolute right-4 top-0 text-[50px] text-white hover:text-yellow-300"
@@ -110,18 +112,28 @@ export default function ResultModalLol({
           className="fixed bottom-8 left-1/2 -translate-x-1/2 transform rounded-md bg-zinc-700 px-4 py-2 text-[1.3em] text-white opacity-0 shadow-lg transition-opacity duration-500 ease-out"
         ></div>
 
-        {/* 포지션 부족 경고 */}
-        {teams.missingPositions?.length > 0 ||
-        teams.insufficientPositions?.length > 0 ? (
+        {teams.missingOrInsufficientPositions?.length > 0 ? (
           <div className="text-center">
             <h2 className="flex items-center justify-center gap-2 text-4xl font-bold bg-transparent">
-              <span className="text-white">❗️Need more players for..</span>
+              <span className="flex space-x-2 text-amber-300">
+                <IoWarning className="text-amber-300" />
+                <span className="text-amber-300">Need more players for..</span>
+              </span>
             </h2>
-            <div className="mt-2 text-3xl">
-              {teams.missingPositions.map((pos, index) => (
-                <span className="text-amber-300" key={pos}>
-                  {pos.charAt(0).toUpperCase() + pos.slice(1)}
-                  {index < teams.missingPositions.length - 1 ? ", " : ""}
+            <div className="mt-5 text-4xl">
+              {teams.missingOrInsufficientPositions.map((pos, index) => (
+                <span
+                  className="items-center justify-center gap-2 text-center"
+                  key={pos}
+                >
+                  <img
+                    src={laneIcons[pos]}
+                    alt={pos}
+                    className="inline-block w-8 h-8"
+                  />
+                  {index < teams.missingOrInsufficientPositions.length - 1
+                    ? " "
+                    : ""}
                 </span>
               ))}
             </div>
@@ -141,13 +153,13 @@ export default function ResultModalLol({
                   {teams.team1.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center bg-opacity-50 rounded-lg shadow-md bg-zinc-900"
+                      className="flex items-center justify-center p-1 px-5 rounded-lg shadow-md bg-zinc-900 bg-opacity-60"
                       style={{ padding: "1em" }}
                     >
                       <img
-                        src={laneIcons[player.selectedLanes[0]]}
-                        alt={player.selectedLanes[0]}
-                        className="w-8 h-8 mr-2"
+                        src={laneIcons[player.position]}
+                        alt={player.position}
+                        className="mr-2 h-7 w-7"
                       />
 
                       <span className="flex-grow text-2xl text-center text-white do-hyeon-regular">
@@ -180,12 +192,12 @@ export default function ResultModalLol({
                   {teams.team2.map((player, index) => (
                     <li
                       key={index}
-                      className="flex items-center bg-opacity-50 rounded-lg shadow-md bg-zinc-900"
+                      className="flex items-center rounded-lg shadow-md bg-zinc-900 bg-opacity-60"
                       style={{ padding: "1em" }}
                     >
                       <img
-                        src={laneIcons[player.selectedLanes[0]]}
-                        alt={player.selectedLanes[0]}
+                        src={laneIcons[player.position]}
+                        alt={player.position}
                         className="w-8 h-8 mr-2"
                       />
 

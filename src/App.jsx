@@ -1,12 +1,17 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Lol from "./pages/Lol";
-import Vlrt from "./pages/Vlrt";
-import Home from "./pages/Home";
 import Footer from "components/Footer";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import JettJump from "./assets/valorant/China_CG_Jett_Jump_Full.webp";
+import Lol from "./pages/Lol";
+import PhxCool from "./assets/valorant/China_CG_phxcool_fullres.webp";
+import SageFire from "./assets/valorant/China_CG_Sagefire_Full.webp";
 import UnsupportedPage from "./pages/UnsupportedPage";
-import { useState, useEffect, useCallback } from "react";
-import { MOBILE_OR_TABLET_REGEX } from "./util/mobileRegex";
+import Valorant2 from "./assets/valorant/Valorant2.webp";
+import ValorantTeaser from "./assets/valorant/Valorant_EP-8-Teaser_The-arrival.webp";
+import Vlrt from "./pages/Vlrt";
+import VlrtBackground from "./assets/valorant/vlrt_background.webp";
+import VlrtRandomAgent from "./pages/VlrtRandomAgent";
+import VlrtRandomMap from "./pages/VlrtRandomMap";
 import l1 from "./assets/league of legends/lol_background.webp";
 import l2 from "./assets/league of legends/c-o-project-hunters-login.webp";
 import l3 from "./assets/league of legends/c-o-videostill-getjinxed-10.webp";
@@ -15,12 +20,9 @@ import l5 from "./assets/league of legends/c-o-war-2020-01.webp";
 import l6 from "./assets/league of legends/lol_T12023.webp";
 import l7 from "./assets/league of legends/c-o-war-2020-02.webp";
 import l8 from "./assets/league of legends/war-2020-04.webp";
-import VlrtBackground from "./assets/valorant/vlrt_background.webp";
-import Valorant2 from "./assets/valorant/Valorant2.webp";
-import JettJump from "./assets/valorant/China_CG_Jett_Jump_Full.webp";
-import PhxCool from "./assets/valorant/China_CG_phxcool_fullres.webp";
-import SageFire from "./assets/valorant/China_CG_Sagefire_Full.webp";
-import ValorantTeaser from "./assets/valorant/Valorant_EP-8-Teaser_The-arrival.webp";
+import { useCallback, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { MOBILE_OR_TABLET_REGEX } from "./util/mobileRegex";
 
 const preloadImages = [
   l1,
@@ -85,6 +87,8 @@ export default function App() {
             />
             <Route path="/leagueOfLegends" element={<Lol />} />
             <Route path="/valorant" element={<Vlrt />} />
+            <Route path="/maps" element={<VlrtRandomMap />} />
+            <Route path="/agents" element={<VlrtRandomAgent />} />
           </Routes>
         </div>
         <Footer />

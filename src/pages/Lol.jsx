@@ -1,17 +1,7 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useMemo,
-} from "react";
+import PlayerLol from "components/PlayerLol.jsx";
+import ResultModalLol from "components/ResultModalLol.jsx";
 import Spinner from "components/Spinner.jsx";
 import WarningModal from "../components/WarningModal.jsx";
-import PlayerLol from "components/PlayerLol.jsx";
-import { tierToPoints_lol } from "../util/tierPoints.js";
-import { generateLolTeams } from "../util/teamGenerator.js";
-import ResultModalLol from "components/ResultModalLol.jsx";
-
 import l1 from "../assets/league of legends/lol_background.webp";
 import l2 from "../assets/league of legends/c-o-project-hunters-login.webp";
 import l3 from "../assets/league of legends/c-o-videostill-getjinxed-10.webp";
@@ -20,11 +10,24 @@ import l5 from "../assets/league of legends/c-o-war-2020-01.webp";
 import l6 from "../assets/league of legends/lol_T12023.webp";
 import l7 from "../assets/league of legends/c-o-war-2020-02.webp";
 import l8 from "../assets/league of legends/war-2020-04.webp";
+import { generateLolTeams } from "../util/teamGenerator.js";
+import { tierToPoints_lol } from "../util/tierPoints.js";
+
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 
 const players = Array.from({ length: 10 }, (_, index) => `Player ${index + 1}`);
 
 const backgroundImages = [l1, l2, l3, l4, l5, l6, l7, l8];
+
 export default function Lol() {
+  const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
+
   const backgroundImage = useMemo(() => {
     return backgroundImages[
       Math.floor(Math.random() * backgroundImages.length)
@@ -117,6 +120,7 @@ export default function Lol() {
     if (isAnyFieldEmpty) {
       setIsWarningModalOpen(true);
     } else {
+      console.log(playerData);
       handleGenerateSpinner(playerData);
     }
   };
@@ -182,7 +186,9 @@ export default function Lol() {
 
   return (
     <div
-      className="mscrollbar-custo page-container lol__container relative flex flex-col items-center overflow-y-auto pt-[9vh]"
+      className={`scrollbar-custom page-container lol__container relative flex flex-col items-center overflow-y-auto pt-[9vh] ${
+        isMaintenanceMode ? "pointer-events-none" : ""
+      }`}
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
@@ -199,8 +205,7 @@ export default function Lol() {
           />
         ))}
       </div>
-
-      <div className="z-[10000] mb-[1.3rem] mt-[0.4rem] flex justify-center bg-transparent">
+      <div className="z-[1000] mb-[1.3rem] mt-[0.4rem] flex justify-center bg-transparent">
         <button
           className="sparkle fixed bottom-[4.5vh] mt-[2vh] flex h-[6vh] items-center justify-center rounded-md bg-gradient-to-r from-rose-800 to-amber-700 px-4 py-2 text-[30px] text-white shadow-rose-900/50 hover:from-rose-700 hover:to-amber-600 hover:shadow-rose-900/70 focus:ring-2 active:from-rose-900 active:to-amber-800 active:outline-none active:ring-rose-700 active:ring-offset-2"
           style={{
@@ -216,19 +221,30 @@ export default function Lol() {
           </span>
         </button>
       </div>
-
       <ResultModalLol
         isOpen={isModalOpen}
         teams={teams}
         onClose={handleCloseModal}
         generateShareableLink={generateShareableLink}
       />
-
       {isWarningModalOpen && (
         <WarningModal
           onClose={handleCloseWarningModal}
           onContinue={handleContinueWithDefaults}
         />
+      )}
+      {isMaintenanceMode && (
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-white/50">
+          <div className="p-8 bg-white rounded-md shadow-md">
+            <h1 className="text-2xl font-bold text-center do-hyeon-regular text-amber-500">
+              Sorry for the inconvenience
+            </h1>
+            <p className="flex items-center justify-center mt-4 text-xl text-black do-hyeon-regular">
+              This feature is currently unavailable due to algorithm improvement
+              work.
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );

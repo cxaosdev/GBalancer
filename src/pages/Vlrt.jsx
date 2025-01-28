@@ -1,3 +1,16 @@
+import JettJump from "../assets/valorant/China_CG_Jett_Jump_Full.webp";
+import PhxCool from "../assets/valorant/China_CG_phxcool_fullres.webp";
+import PlayerVlrt from "components/PlayerVlrt.jsx";
+import ResultModalVlrt from "components/ResultModalVlrt.jsx";
+import SageFire from "../assets/valorant/China_CG_Sagefire_Full.webp";
+import Spinner from "components/Spinner.jsx";
+import Valorant2 from "../assets/valorant/Valorant2.webp";
+import ValorantTeaser from "../assets/valorant/Valorant_EP-8-Teaser_The-arrival.webp";
+import VlrtBackground from "../assets/valorant/vlrt_background.webp";
+import WarningModal from "../components/WarningModal.jsx";
+import { generateVlrtTeams } from "../util/teamGenerator.js";
+import { tierToPoints_vlrt } from "../util/tierPoints.js";
+
 import React, {
   useState,
   useEffect,
@@ -5,19 +18,7 @@ import React, {
   useRef,
   useMemo,
 } from "react";
-import PlayerVlrt from "components/PlayerVlrt.jsx";
-import Spinner from "components/Spinner.jsx";
-import WarningModal from "../components/WarningModal.jsx";
-import { generateVlrtTeams } from "../util/teamGenerator.js";
-import { tierToPoints_vlrt } from "../util/tierPoints.js";
-import ResultModalVlrt from "components/ResultModalVlrt.jsx";
 
-import VlrtBackground from "../assets/valorant/vlrt_background.webp";
-import Valorant2 from "../assets/valorant/Valorant2.webp";
-import JettJump from "../assets/valorant/China_CG_Jett_Jump_Full.webp";
-import PhxCool from "../assets/valorant/China_CG_phxcool_fullres.webp";
-import SageFire from "../assets/valorant/China_CG_Sagefire_Full.webp";
-import ValorantTeaser from "../assets/valorant/Valorant_EP-8-Teaser_The-arrival.webp";
 
 const players = Array.from({ length: 10 }, (_, index) => `Player ${index + 1}`);
 
@@ -211,7 +212,7 @@ export default function Vlrt() {
 
         <div className="fixed right-[20px] top-1/2 mt-6 flex -translate-y-1/2 transform flex-col items-center">
           <button
-            className="flex cursor-pointer flex-col items-center"
+            className="flex flex-col items-center cursor-pointer"
             onClick={scrollToBottom}
           >
             <span
